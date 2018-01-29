@@ -19,7 +19,6 @@ after_success:
 
 before_deploy:
   - npm run build
-  - npm run cix-lic
 
 deploy:
   - provider: npm
