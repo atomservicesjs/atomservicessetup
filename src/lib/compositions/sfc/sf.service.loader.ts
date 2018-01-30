@@ -1,6 +1,6 @@
 import { ValueLoader } from "../../util/value.loader";
 
-type ServiceSF = {
+export type ServiceSF = {
   name: string;
   service: Function;
   as?: string;
@@ -16,7 +16,14 @@ type ServiceSF = {
     type: string;
     quality?: string;
   }[];
-  initializer?: any;
+  initializer?: (
+    props: {
+      ServiceClass: Function,
+      serviceName: string,
+      properties: any
+    },
+    options?: any
+  ) => Promise<any>;
 };
 
 type ServiceDefined = Function;

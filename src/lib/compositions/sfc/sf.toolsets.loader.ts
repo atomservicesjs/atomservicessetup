@@ -1,11 +1,18 @@
 import { ValueLoader } from "../../util/value.loader";
 
-type ToolsetsSF = {
+export type ToolsetsSF = {
   name: string;
   toolsets: any;
   as: string;
   properties?: any;
-  initializer?: any;
+  initializer?: (
+    props: {
+      Asset: any;
+      toolsetsName: string;
+      properties: any;
+    },
+    options?: any
+  ) => Promise<any>;
 };
 
 type ToolsetsDefined = {
