@@ -20,7 +20,7 @@
     "test-mocha-cvr": "nyc mocha test --recursive",
     "coverage": "npm run coveralls",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "cix-lic": "cix-lic -d ./dst -b 2018"
+    "cix-lic": "cix-lic --conf"
   },
   "author": "Architecode Corporation",
   "license": "MIT",
