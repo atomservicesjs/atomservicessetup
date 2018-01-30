@@ -1,3 +1,5 @@
+export { ServiceSF, ToolsetsSF } from "./lib/compositions/sfc";
+
 export {
   ApplicationSetupLoader,
   ModularSetupLoader,
