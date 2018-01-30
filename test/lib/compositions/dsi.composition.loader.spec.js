@@ -6,7 +6,7 @@ const CompositionSetupLoader = require('../../../dst/lib/composition.setup.loade
 
 describe('composition.setup.loader.js tests', () => {
   describe('#load()', () => {
-    it('expect to load a composition in DSI formatted', () => {
+    it('expect to load a composition in DSI formatted, #1', () => {
       // arranges
       const val = './test/resources/composition/dsi';
       const expected = {
@@ -28,7 +28,7 @@ describe('composition.setup.loader.js tests', () => {
       expect(result).to.deep.equal(expected);
     });
 
-    it('expect to load a composition in DSI formatted', () => {
+    it('expect to load a composition in DSI formatted, #2', () => {
       // arranges
       const val = './test/resources/composition/dsi/case';
       const expected = {

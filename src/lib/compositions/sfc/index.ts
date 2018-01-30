@@ -1,2 +1,2 @@
-export { SFServiceLoader } from "./sf.service.loader";
-export { SFToolsetsLoader } from "./sf.toolsets.loader";
+export { SFServiceLoader, ServiceSF } from "./sf.service.loader";
+export { SFToolsetsLoader, ToolsetsSF } from "./sf.toolsets.loader";
