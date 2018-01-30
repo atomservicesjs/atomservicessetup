@@ -1,4 +1,4 @@
-export { ServiceSF, ToolsetsSF } from "./lib/compositions/sfc";
+export { SFService, SFToolsets } from "./lib/compositions/sfc";
 
 export {
   ApplicationSetupLoader,

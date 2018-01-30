@@ -1,6 +1,6 @@
 import { ValueLoader } from "../../util/value.loader";
 
-export type ServiceSF = {
+export type SFService = {
   name: string;
   service: Function;
   as?: string;
@@ -56,7 +56,7 @@ export const SFServiceLoader = {
   load: (collection: any[], baseDir: string): { defineds: ServiceDefined[]; setups: ServiceSetup[]; initializers: any[]; } => {
     return collection.reduce((result: { defineds: ServiceDefined[]; setups: ServiceSetup[]; initializers: any[] }, each) => {
       const loaded: any = ValueLoader.dynamicLoad(each, baseDir);
-      const data: ServiceSF = loaded.module || loaded;
+      const data: SFService = loaded.module || loaded;
 
       result.defineds.push(SFServiceLoader.defined(data));
       result.setups.push(SFServiceLoader.setup(data));
@@ -68,8 +68,8 @@ export const SFServiceLoader = {
       return result;
     }, { defineds: [], setups: [], initializers: [] });
   },
-  defined: (data: ServiceSF): ServiceDefined => data.service,
-  setup: (data: ServiceSF): ServiceSetup => {
+  defined: (data: SFService): ServiceDefined => data.service,
+  setup: (data: SFService): ServiceSetup => {
     const setup: ServiceSetup = {
       name: data.name,
       service: data.service.name,
@@ -118,7 +118,7 @@ export const SFServiceLoader = {
 
     return setup;
   },
-  initializer: (data: ServiceSF): any => ({ as: data.as, initializer: data.initializer })
+  initializer: (data: SFService): any => ({ as: data.as, initializer: data.initializer })
 };
 
 Object.freeze(SFServiceLoader);
