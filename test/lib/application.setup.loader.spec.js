@@ -8,7 +8,7 @@ const ApplicationSetupLoader = require('../../dst/lib/application.setup.loader')
 
 describe('application.setup.loader.js tests', () => {
   describe('#load()', () => {
-    it('expect to load an application with no modulars', () => {
+    it('expect to load an application with no arguments', () => {
       // arranges
       const base = './test/resources/application';
       const expected = { name: 'AtomApplication', modulars: [] };
@@ -47,7 +47,22 @@ describe('application.setup.loader.js tests', () => {
       expect(result).to.deep.equal(expected);
     });
 
-    it('expect to load an application with structure modulars', () => {
+    it('expect to load an application with structure-text modulars', () => {
+      // arranges
+      const val = './test/resources/application/struct-text';
+      const expected = {
+        name: 'StructureApplication',
+        modulars: [{ name: 'EmptyModular' }]
+      };
+
+      // acts
+      const result = ApplicationSetupLoader.load(val);
+
+      // asserts
+      expect(result).to.deep.equal(expected);
+    });
+
+    it('expect to load an application with structure modulars using as', () => {
       // arranges
       const val = './test/resources/application/struct-as.js'
       const expected = {

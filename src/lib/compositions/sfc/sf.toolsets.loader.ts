@@ -1,6 +1,6 @@
 import { ValueLoader } from "../../util/value.loader";
 
-export type ToolsetsSF = {
+export type SFToolsets = {
   name: string;
   toolsets: any;
   as: string;
@@ -31,7 +31,7 @@ export const SFToolsetsLoader = {
   load: (collection: any[], baseDir: string): { defineds: ToolsetsDefined[]; setups: ToolsetsSetup[]; initializers: any[]; } => {
     return collection.reduce((result: { defineds: ToolsetsDefined[]; setups: ToolsetsSetup[]; initializers: any[]; }, each) => {
       const loaded: any = ValueLoader.dynamicLoad(each, baseDir);
-      const data: ToolsetsSF = loaded.module || loaded;
+      const data: SFToolsets = loaded.module || loaded;
 
       result.defineds.push(SFToolsetsLoader.defined(data));
       result.setups.push(SFToolsetsLoader.setup(data));
@@ -43,14 +43,14 @@ export const SFToolsetsLoader = {
       return result;
     }, { defineds: [], setups: [], initializers: [] });
   },
-  defined: (data: ToolsetsSF): ToolsetsDefined => {
+  defined: (data: SFToolsets): ToolsetsDefined => {
     return {
       toolsets: data.name,
       asset: data.toolsets,
       as: data.as
     };
   },
-  setup: (data: ToolsetsSF): ToolsetsSetup => {
+  setup: (data: SFToolsets): ToolsetsSetup => {
     const setup: ToolsetsSetup = {
       name: data.name,
       toolsets: data.name
@@ -62,7 +62,7 @@ export const SFToolsetsLoader = {
 
     return setup;
   },
-  initializer: (data: ToolsetsSF): any => ({ as: data.as, initializer: data.initializer })
+  initializer: (data: SFToolsets): any => ({ as: data.as, initializer: data.initializer })
 };
 
 Object.freeze(SFToolsetsLoader);

@@ -1,4 +1,6 @@
 module.exports = {
   name: 'PropsApplication',
-  MainModular: './modulars/empty'
+  modulars: {
+    MainModular: './modulars/empty'
+  }
 };
