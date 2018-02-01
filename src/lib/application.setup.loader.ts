@@ -1,5 +1,6 @@
 import { AppEnv } from "archappenv";
 import { Common } from "./common";
+import { SetupFile } from "./setupfile";
 import { ModularSetupLoader } from "./modular.setup.loader";
 
 const AtomAppFile = "atom.app.js";
@@ -12,31 +13,36 @@ export const ApplicationSetupLoader = {
 
     return ApplicationSetupLoader.resolveSetup(setup, baseDir);
   },
-  resolveSetup: (appSetup: { [k: string]: any, name: string; modulars?: any[] }, baseDir: string) => {
-    if (Array.isArray(appSetup.modulars)) {
-      appSetup.modulars = appSetup.modulars.map(each => {
-        const loaded = ModularSetupLoader.load(each, baseDir);
-        loaded.name = each.as || loaded.name;
-        return loaded;
-      });
+  resolveSetup: (appSetup: SetupFile.AtomApplication, baseDir: string) => {
+    if (appSetup.modulars) {
+      let _modulars: any[];
 
-      return appSetup;
-    } else {
-      const definedProperties = ["name"];
+      if (Array.isArray(appSetup.modulars)) {
+        _modulars = appSetup.modulars.map(each => {
+          const loaded = ModularSetupLoader.load(each, baseDir);
 
-      appSetup = Object.keys(appSetup).reduce((result, key) => {
-        if (definedProperties.indexOf(key) == -1) {
-          const loaded = ModularSetupLoader.load(appSetup[key], baseDir);
+          if (typeof each !== "string") {
+            loaded.name = each.as || loaded.name;
+          }
+
+          return loaded;
+        });
+      } else {
+        _modulars = Object.keys(appSetup.modulars).reduce((result: any[], key) => {
+          const loaded = ModularSetupLoader.load((appSetup.modulars as { [name: string]: string; })[key], baseDir);
           loaded.name = key;
-          result.modulars.push(loaded);
-        } else {
-          result[key] = appSetup[key];
-        }
-        return result;
-      }, { modulars: [] } as any);
+          result.push(loaded);
 
-      return appSetup;
+          return result;
+        }, []);
+      }
+
+      appSetup.modulars = _modulars;
+    } else {
+      appSetup.modulars = [];
     }
+
+    return appSetup;
   },
   findAppFile: (baseDir?: string) => {
     const files = AppEnv.Util.findFilePaths(AtomAppFile, baseDir);

@@ -4,5 +4,6 @@ export {
   ApplicationSetupLoader,
   ModularSetupLoader,
   CompositionSetupLoader,
-  Util
+  SetupFile,
+  Util,
 } from "./lib";
