@@ -10,6 +10,7 @@ export namespace SetupFile {
     name: string;
     services?: string | { type: string; module: string; };
     toolsets?: string | { type: string; module: string; };
+    initiate?: string[];
   };
 
   export type AtomCompositions = {
