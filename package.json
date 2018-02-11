@@ -27,8 +27,7 @@
   "repository": "git+https://github.com/atomservicesjs/atomservicessetup",
   "dependencies": {
     "archappenv": "^2.0.0-alpha.51",
-    "lodash.clonedeep": "^4.5.0",
-    "clone": "^2.1.1"
+    "lodash.clonedeep": "^4.5.0"
   },
   "devDependencies": {
     "@types/node": "^9.4.5",

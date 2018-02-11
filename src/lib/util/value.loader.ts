@@ -1,7 +1,7 @@
 import * as FS from "fs";
 import * as Path from "path";
-import * as Clone from "clone";
 import { PathResolver } from "./path.resolver";
+const CloneDeep = require("lodash.clonedeep");
 
 export const ValueLoader = {
   resolveType: (v: any) => {
@@ -21,12 +21,11 @@ export const ValueLoader = {
   },
   StringLoader: (val: string, base: string) => {
     const absfile = PathResolver.absoluteFile(val, base);
-    const loaded = Clone(require(absfile));
+    const loaded = CloneDeep(require(absfile));
 
     return { file: absfile, module: loaded };
   },
   ModuleLoader: (val: { type: string; module: string }, base: string) => {
-    let loaded;
     let absfile;
 
     if (val.type === "file") {
@@ -37,7 +36,7 @@ export const ValueLoader = {
       throw new Error(`INVALID TYPE on 'ModuleLoader': ${val.type}`);
     }
 
-    loaded = Clone(require(absfile));
+    const loaded = CloneDeep(require(absfile));
 
     return { file: absfile, module: loaded };
   },
