@@ -1,7 +1,7 @@
 import * as FS from "fs";
 import * as Path from "path";
+import * as CloneDeep from "clone";
 import { PathResolver } from "./path.resolver";
-const CloneDeep = require("lodash.clonedeep");
 
 export const ValueLoader = {
   resolveType: (v: any) => {

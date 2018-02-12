@@ -145,6 +145,20 @@ describe('value.loader.js tests', () => {
       // asserts
       expect(result).to.deep.equal(expected);
     });
+
+    it('expect to load a file from module loader', () => {
+      // arranges
+      const absfile = path.join(AppEnv.Util.packagePath(), './test/resources/util/func.js');
+      const val = { type: 'file', module: './test/resources/util/func.js' };
+
+      // acts
+      const act = ValueLoader.ModuleLoader(val).module;
+
+      // asserts
+      expect(typeof act).to.equal("function");
+      expect(act.name).to.equal("TestFunction");
+      expect(act()).to.equal(true);
+    });
   });
 
   describe('#ModuleLoader() on module-type', () => {
@@ -184,7 +198,7 @@ describe('value.loader.js tests', () => {
     });
   });
 
-  describe('#ModuleLoader() on other-type', () => {
+  describe('#ModuleLoader() on invalid type', () => {
     it('expect to throw an error', () => {
       // arranges
       const val = { type: 'error' };
