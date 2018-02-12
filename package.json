@@ -1,6 +1,6 @@
 {
   "name": "atomservicessetup",
-  "version": "0.1.0-alpha.13",
+  "version": "0.1.0-alpha.14",
   "description": "Architecode AtomServices Setup Library on Microservices",
   "main": "./dst/index.js",
   "typings": "./typings/index.d.ts",
