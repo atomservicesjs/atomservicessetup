@@ -3,6 +3,7 @@ export namespace SetupFile {
     [key: string]: any;
     name: string;
     modulars?: { [name: string]: string; } | (string | { type: string; module: string; as?: string; })[];
+    dynamicProperties?: { [name: string]: any; };
   };
 
   export type AtomModular = {
