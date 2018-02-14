@@ -33,7 +33,7 @@
     "@types/clone": "^0.1.30",
     "@types/node": "^9.4.5",
     "chai": "^4.1.2",
-    "cix-lic": "^2.0.0",
+    "cix-lic": "^2.0.5",
     "coveralls": "^3.0.0",
     "mocha": "^5.0.0",
     "mock-require": "^3.0.1",
