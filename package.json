@@ -1,6 +1,6 @@
 {
   "name": "atomservicessetup",
-  "version": "0.1.0-alpha.17",
+  "version": "0.1.0-alpha.18",
   "description": "Architecode AtomServices Setup Library on Microservices",
   "main": "./dst/index.js",
   "typings": "./typings/index.d.ts",
@@ -26,7 +26,7 @@
   "license": "MIT",
   "repository": "git+https://github.com/atomservicesjs/atomservicessetup",
   "dependencies": {
-    "archappenv": "^2.0.0-alpha.53",
+    "archappenv": "^2.0.0-alpha.56",
     "clone": "^2.1.1"
   },
   "devDependencies": {
