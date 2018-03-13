@@ -5,10 +5,13 @@ export namespace SetupFile {
     modulars?: { [name: string]: string; } | (string | { type: string; module: string; as?: string; })[];
     dynamicProperties?: { [name: string]: any; };
     eventsHandlers?: {
+      [eventName: string]: Function[];
       any?: Function[];
       error?: Function[];
-      [eventName: string]: Function[];
-    }
+    };
+    esHandlers?: {
+      es?: Function[];
+    };
   };
 
   export type AtomModular = {
