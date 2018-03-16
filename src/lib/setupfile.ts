@@ -4,13 +4,24 @@ export namespace SetupFile {
     name: string;
     modulars?: { [name: string]: string; } | (string | { type: string; module: string; as?: string; })[];
     dynamicProperties?: { [name: string]: any; };
-    eventsHandlers?: {
-      [eventName: string]: Function[];
-      any?: Function[];
-      error?: Function[];
+    eventsContext?: {
+      esHandlers?: {
+        es?: Function[];
+      };
+      eventsHandlers?: {
+        [eventName: string]: Function[];
+        any?: Function[];
+        error?: Function[];
+      };
     };
-    esHandlers?: {
-      es?: Function[];
+    lifecycle?: {
+      beforeCreate?: Function;
+      created?: Function;
+      beforeSetupModular?: Function;
+      setupModular?: Function;
+      beforeMount?: Function;
+      mounted?: Function;
+      initiating?: Function;
     };
   };
 
@@ -20,6 +31,11 @@ export namespace SetupFile {
     services?: string | { type: string; module: string; };
     toolsets?: string | { type: string; module: string; };
     initiate?: string[];
+    lifecycle?: {
+      beforeCreate?: Function;
+      created?: Function;
+      initiating?: Function;
+    };
   };
 
   export type AtomCompositions = {
